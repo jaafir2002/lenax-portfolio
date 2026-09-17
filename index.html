@@ -22,9 +22,10 @@
   --muted:#475569;
   --muted2:#64748B;
   --card:#FFFFFF;
-  --serif:'Instrument Serif', serif;
-  --sans:'Space Grotesk', sans-serif;
+  --serif:'Inter', sans-serif;
+  --sans:'Inter', sans-serif;
   --mono:'JetBrains Mono', monospace;
+  --header-font:'Inter', sans-serif;
   --focus:0 0 0 3px rgba(37,99,235,.18);
   --shadow-soft:0 8px 30px rgba(15,23,42,.08);
   --shadow-card:0 4px 18px rgba(15,23,42,.06);
@@ -45,10 +46,10 @@ button:focus-visible, a:focus-visible, [role="button"]:focus-visible, input:focu
 .nav-pill{max-width:1220px;margin:0 auto;background:var(--card);border:1.5px solid var(--line);border-radius:999px;padding:10px 14px 10px 18px;display:flex;align-items:center;justify-content:space-between;gap:16px;box-shadow:var(--shadow-soft)}
 .logo{display:flex;align-items:center;gap:12px}
 .logo-badge{width:44px;height:44px;background:var(--lime);color:#fff;border-radius:12px;display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-weight:700;font-size:1rem;letter-spacing:-1px;box-shadow:0 6px 14px rgba(37,99,235,.25)}
-.logo-name{font-family:var(--sans);font-weight:700;letter-spacing:-.8px;font-size:1.25rem;line-height:1}
-.logo-name span{font-weight:400;color:var(--muted);font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;display:block;margin-top:1px;font-family:var(--mono)}
+.logo-name{font-family:var(--header-font);font-weight:800;letter-spacing:-.6px;font-size:1.28rem;line-height:1;color:var(--ink)}
+.logo-name span{font-weight:600;color:var(--muted);font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;display:block;margin-top:2px;font-family:var(--header-font)}
 .nav-links{list-style:none;display:flex;gap:6px;align-items:center;background:var(--paper-2);border-radius:999px;padding:6px;border:1.5px solid #E7E0D0}
-.nav-links a{padding:8px 16px;border-radius:999px;font-size:.88rem;font-weight:600;letter-spacing:-.2px;transition:all .18s}
+.nav-links a{padding:8px 16px;border-radius:999px;font-size:.87rem;font-weight:600;letter-spacing:-.15px;transition:all .18s;font-family:var(--header-font)}
 .nav-links a:hover{background:var(--card);box-shadow:0 2px 10px rgba(0,0,0,.06)}
 .nav-links a.active{background:var(--ink);color:#fff}
 .nav-actions{display:flex;align-items:center;gap:10px}
@@ -76,7 +77,7 @@ button:focus-visible, a:focus-visible, [role="button"]:focus-visible, input:focu
 @keyframes dotPulse{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.15);opacity:.85}}
 .pro-eyebrow b{font-family:var(--mono);font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:var(--ink)}
 .pro-eyebrow em{font-family:var(--mono);font-size:.72rem;color:var(--muted);font-style:normal}
-.hero h1{font-family:var(--sans);font-size:3.1rem;line-height:1.02;letter-spacing:-1px;font-weight:800;color:var(--ink)}
+.hero h1{font-family:var(--header-font);font-size:3.05rem;line-height:1.02;letter-spacing:-1.2px;font-weight:800;color:var(--ink)}
 .hero h1 span{color:var(--lime);position:relative}
 .hero h1 span::after{content:'';position:absolute;left:0;right:0;bottom:4px;height:6px;background:rgba(37,99,235,.10);border-radius:3px;z-index:-1}
 .hero h1 em{font-style:normal;color:var(--ink)}
