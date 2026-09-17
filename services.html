@@ -484,6 +484,9 @@ footer{border-top:1px solid #1E293B;margin-top:0}
 .logo-badge{animation:logoPulse 3s ease-in-out infinite; will-change:transform}
 @keyframes logoPulse{0%,100%{transform:scale(1)}50%{transform:scale(1.04)}}
 .nav-links a{position:relative; transition:transform .18s ease, background .18s ease, color .18s ease}
+.nav-links a::after{content:'';position:absolute;left:16px;right:16px;bottom:5px;height:2px;background:var(--lime);border-radius:2px;transform:scaleX(0);transform-origin:left;transition:transform .25s ease}
+.nav-links a:hover::after{transform:scaleX(1)}
+.nav-links a.active::after{transform:scaleX(1);background:#fff;opacity:.85}
 .nav-links a:hover{transform:translateY(-1px)}
 .nav-links a.active{animation:activeGlow 2.8s ease-in-out infinite}
 @keyframes activeGlow{0%,100%{box-shadow:0 0 0 rgba(15,23,42,0)}50%{box-shadow:0 2px 10px rgba(15,23,42,.12)}}
