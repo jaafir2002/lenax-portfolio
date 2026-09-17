@@ -456,6 +456,27 @@ footer{border-top:1px solid #1E293B;margin-top:0}
 .modal-head{border-bottom:1px solid var(--line)}
 @media(max-width:768px){.section{padding:64px 0}.hero-left,.hero-left.pro-hero{padding:28px}.hero h1{font-size:2.1rem}}
 
+
+/* ===== BOUNCING COMPONENTS — hero-right ===== */
+.hero-right .top-img{animation:floatY 5s ease-in-out infinite; will-change:transform}
+.hero-right .stat-box{animation:bounceSoft 3.2s ease-in-out infinite; will-change:transform}
+.hero-right .stat-box.dark{animation:bounceSoft 3.8s ease-in-out infinite reverse}
+.hero-right .stat-box .tape{animation:bounceSoft 2.8s ease-in-out infinite; transform-origin:center}
+.hero-right div[style*="display:flex;gap:8px"] span{animation:bouncePill 2.6s ease-in-out infinite; display:inline-flex; will-change:transform}
+.hero-right div[style*="display:flex;gap:8px"] span:nth-child(1){animation-delay:.0s}
+.hero-right div[style*="display:flex;gap:8px"] span:nth-child(2){animation-delay:.3s}
+.hero-right div[style*="display:flex;gap:8px"] span:nth-child(3){animation-delay:.6s}
+.hero-right div[style*="display:flex;gap:8px"] span:nth-child(4){animation-delay:.9s; animation:none; opacity:.7}
+@keyframes bounceSoft{0%,100%{transform:translateY(0)}50%{transform:translateY(-5px)}}
+@keyframes floatY{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+@keyframes bouncePill{0%,100%{transform:translateY(0)}25%{transform:translateY(-4px)}50%{transform:translateY(0)}}
+@media(prefers-reduced-motion:reduce){
+  .hero-right .top-img,.hero-right .stat-box,.hero-right .stat-box .tape,.hero-right div[style*="display:flex;gap:8px"] span{animation:none !important}
+}
+@media(hover:hover){
+  .hero-right .stat-box:hover{animation-play-state:paused; transform:translateY(-2px)}
+}
+
 </style>
 <title>About — Lenax | Bengaluru IT Studio</title>
 </head>
