@@ -477,6 +477,24 @@ footer{border-top:1px solid #1E293B;margin-top:0}
   .hero-right .stat-box:hover{animation-play-state:paused; transform:translateY(-2px)}
 }
 
+
+/* ===== MOVING COMPONENTS — nav-pill ===== */
+.nav-pill{transition:transform .25s ease, box-shadow .25s ease, padding .25s ease; will-change:transform}
+.nav-pill.scrolled{transform:translateY(-2px) scale(.985); box-shadow:0 4px 20px rgba(15,23,42,.12); padding:8px 14px 8px 16px}
+.logo-badge{animation:logoPulse 3s ease-in-out infinite; will-change:transform}
+@keyframes logoPulse{0%,100%{transform:scale(1)}50%{transform:scale(1.04)}}
+.nav-links a{position:relative; transition:transform .18s ease, background .18s ease, color .18s ease}
+.nav-links a:hover{transform:translateY(-1px)}
+.nav-links a.active{animation:activeGlow 2.8s ease-in-out infinite}
+@keyframes activeGlow{0%,100%{box-shadow:0 0 0 rgba(15,23,42,0)}50%{box-shadow:0 2px 10px rgba(15,23,42,.12)}}
+.btn-pill.btn-lime{animation:navBounce 3.4s ease-in-out infinite; will-change:transform}
+@keyframes navBounce{0%,100%{transform:translateY(0)}25%{transform:translateY(-2px)}50%{transform:translateY(0)}}
+.hamburger span{transition:transform .25s ease, opacity .2s ease}
+@media(prefers-reduced-motion:reduce){
+  .logo-badge,.nav-links a.active,.btn-pill.btn-lime{animation:none !important}
+  .nav-pill,.nav-links a{transition:none !important}
+}
+
 </style>
 <title>Contact — Lenax | Bengaluru IT Studio</title>
 </head>
@@ -654,6 +672,23 @@ window.addEventListener('scroll',()=>{
     s.addEventListener('focus',()=>{ stats.forEach(x=>x.classList.remove('active')); s.classList.add('active'); });
   });
 })();
+
+// nav moving — shrink on scroll
+(function(){
+  const nav=document.querySelector('.nav-pill');
+  if(!nav) return;
+  let tick=false;
+  window.addEventListener('scroll',()=>{
+    if(tick) return;
+    tick=true;
+    requestAnimationFrame(()=>{
+      if(window.scrollY>16) nav.classList.add('scrolled');
+      else nav.classList.remove('scrolled');
+      tick=false;
+    });
+  },{passive:true});
+})();
+
 </script>
 </body>
 </html>
