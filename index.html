@@ -497,6 +497,27 @@ footer{border-top:1px solid #1E293B;margin-top:0}
   .logo-badge,.nav-links a.active,.btn-pill.btn-lime{animation:none !important}
   .nav-pill,.nav-links a{transition:none !important}
 }
+/* ===== VIDEO REVIEWS — drb-video ===== */
+.video-reviews{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.v-card{border:1px solid var(--line);border-radius:16px;overflow:hidden;background:#fff;box-shadow:0 1px 2px rgba(15,23,42,.05);transition:transform .18s, box-shadow .18s}
+.v-card:hover{transform:translateY(-3px);box-shadow:0 8px 20px rgba(15,23,42,.08)}
+.drb-video{position:relative;background:#0F172A;aspect-ratio:16/10;overflow:hidden;cursor:pointer}
+.drb-video video{width:100%;height:100%;object-fit:cover;display:block}
+.drb-controls{position:absolute;inset:auto 0 0 0;display:flex;align-items:center;gap:8px;padding:10px;background:linear-gradient(180deg, transparent, rgba(0,0,0,.55));backdrop-filter:blur(2px)}
+.drb-btn{width:34px;height:34px;border-radius:999px;border:1px solid rgba(255,255,255,.22);background:rgba(255,255,255,.92);color:#0F172A;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:transform .15s, background .15s}
+.drb-btn:hover{transform:scale(1.06);background:#fff}
+.drb-btn.play[aria-pressed="true"]{background:var(--lime);color:#fff;border-color:var(--lime)}
+.drb-progress{flex:1;height:4px;background:rgba(255,255,255,.28);border-radius:999px;overflow:hidden;margin-left:4px}
+.drb-progress-fill{height:100%;width:0%;background:#fff;border-radius:999px;transition:width .12s linear}
+.v-body{padding:14px}
+.v-body .stars{color:#F59E0B;letter-spacing:1px;font-size:.85rem}
+.v-body p{font-family:'Inter',sans-serif;font-size:.92rem;line-height:1.5;margin:8px 0 10px;color:#0F172A}
+.v-body .person{display:flex;align-items:center;gap:10px;border-top:1px solid var(--line);padding-top:10px}
+.v-body .person img{width:36px;height:36px;border-radius:50%;object-fit:cover;border:1px solid var(--line)}
+.v-body .person strong{font-family:var(--header-font);font-size:.88rem}
+.v-body .person span{font-family:var(--mono);font-size:.68rem;color:var(--muted);letter-spacing:.06em;text-transform:uppercase}
+@media(max-width:1024px){.video-reviews{grid-template-columns:1fr 1fr}}
+@media(max-width:640px){.video-reviews{grid-template-columns:1fr}}
 
 </style>
 </head>
@@ -722,17 +743,51 @@ footer{border-top:1px solid #1E293B;margin-top:0}
   </div>
 </section>
 
-<!-- TESTIMONIALS -->
+<!-- REVIEWS — video testimonials (drb-video format) -->
 <section class="section" style="padding-top:0">
   <div class="container">
-    <div style="text-align:center;margin-bottom:18px">
-      <h2 style="font-family:var(--serif);font-size:2.8rem;letter-spacing:-.02em">In their <i style="font-style:italic;color:var(--orange)">own words</i> — India</h2>
-      <p style="font-family:var(--mono);font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-top:6px">Verified • Google & Clutch • 4.9/5 average</p>
+    <div style="text-align:center;margin-bottom:22px">
+      <span class="kicker" style="background:#EFF6FF;border:1px solid #BFDBFE;color:var(--ink);padding:6px 10px;border-radius:999px;font-family:var(--mono);font-size:.68rem;letter-spacing:.08em;text-transform:uppercase;font-weight:700">VIDEO REVIEWS • VERIFIED</span>
+      <h2 style="font-family:var(--sans);font-size:2.4rem;letter-spacing:-.7px;font-weight:800;margin-top:10px">Real reviews — <span style="color:var(--lime);position:relative">watch them<span style="position:absolute;left:0;right:0;bottom:3px;height:6px;background:rgba(37,99,235,.10);border-radius:3px;z-index:-1"></span></span></h2>
+      <p style="font-family:'Inter',sans-serif;color:#475569;font-size:.95rem;margin-top:8px;line-height:1.6">Tap to play — 30-sec founder stories. Same videos you requested in <span style="font-family:var(--mono);font-size:.72rem;background:#F8FAFC;border:1px solid var(--line);padding:2px 6px;border-radius:6px">drb-video</span> format.</p>
     </div>
-    <div class="q-grid">
-      <div class="q-card reveal"><div class="stars">★★★★★</div><p>“In 22 days we were selling. Razorpay + Shiprocket worked day one. ₹8L first month — no follow-ups needed.”</p><div class="person"><img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop"><div><strong>Rajesh Agarwal</strong><br><span>SajDhaj, Mumbai</span></div></div></div>
-      <div class="q-card reveal"><div class="stars">★★★★★</div><p>“Finally Android-first. Works on ₹8k phones offline. Even Hindi onboarding — our students loved it.”</p><div class="person"><img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&h=100&fit=crop"><div><strong>Priya Nair</strong><br><span>Padho, Delhi NCR</span></div></div></div>
-      <div class="q-card reveal"><div class="stars">★★★★★</div><p>“2 days → 2 hours. Tally sync, e-invoicing, proper GST bill. Professional, no cash talk.”</p><div class="person"><img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=100&h=100&fit=crop"><div><strong>Amit Patel</strong><br><span>Vardhman Steel, Ahmedabad</span></div></div></div>
+    <div class="video-reviews">
+      <!-- Card 1 -->
+      <div class="v-card reveal">
+        <div class="drb-video" data-video>
+          <video src="https://cdn.dribbble.com/userupload/46766459/file/42e3e538c8cef7ffd31d6bbb928f7e75.mp4" poster="https://cdn.dribbble.com/userupload/46766459/file/still-70cb78ec2c4a220f7d5706af5b005fa8.png" loop preload="metadata" playsinline muted></video>
+          <div class="drb-controls">
+            <button class="drb-btn play" aria-label="Play"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M18.6795 13.4L7.77348 20.3964C6.42547 21.2626 4.5 20.4384 4.5 18.9964V5.00358C4.5 3.5616 6.42547 2.73736 7.77348 3.6036L18.6795 10.6C18.9311 10.7504 19.1381 10.9575 19.2815 11.2021C19.4248 11.4468 19.5 11.7211 19.5 12C19.5 12.2789 19.4248 12.5532 19.2815 12.7979C19.1381 13.0425 18.9311 13.2496 18.6795 13.4Z" fill="currentColor"/></svg></button>
+            <button class="drb-btn mute" aria-label="Unmute"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M21.414 12L23.707 9.707C23.8892 9.5184 23.99 9.2658 23.9877 9.0036C23.9854 8.7414 23.8802 8.49059 23.6948 8.30518C23.5094 8.11977 23.2586 8.0146 22.9964 8.01233C22.7342 8.01005 22.4816 8.11084 22.293 8.293L20 10.586L17.707 8.293C17.5184 8.11084 17.2658 8.01005 17.0036 8.01233C16.7414 8.0146 16.4906 8.11977 16.3052 8.30518C16.1198 8.49059 16.0146 8.7414 16.0123 9.0036C16.01 9.2658 16.1108 9.5184 16.293 9.707L18.586 12L16.293 14.293C16.1975 14.3852 16.1213 14.4956 16.0689 14.6176C16.0165 14.7396 15.9889 14.8708 15.9877 15.0036C15.9866 15.1364 16.0119 15.2681 16.0622 15.391C16.1125 15.5139 16.1867 15.6255 16.2806 15.7194C16.3745 15.8133 16.4862 15.8875 16.609 15.9378C16.7319 15.9881 16.8636 16.0134 16.9964 16.0123C17.1292 16.0111 17.2604 15.9835 17.3824 15.9311C17.5044 15.8787 17.6148 15.8025 17.707 15.707L20 13.414L22.293 15.707C22.4816 15.8892 22.7342 15.99 22.9964 15.9877C23.2586 15.9854 23.5094 15.8802 23.6948 15.6948C23.8802 15.5094 23.9854 15.2586 23.9877 14.9964C23.99 14.7342 23.8892 14.4816 23.707 14.293L21.414 12ZM3 6C2.20435 6 1.44129 6.31607 0.87868 6.87868C0.31607 7.44129 0 8.20435 0 9L0 15C0 15.7956 0.31607 16.5587 0.87868 17.1213C1.44129 17.6839 2.20435 18 3 18H5.649L12 23V1L5.649 6H3Z" fill="currentColor"/></svg></button>
+            <div class="drb-progress"><div class="drb-progress-fill"></div></div>
+          </div>
+        </div>
+        <div class="v-body"><div class="stars">★★★★★</div><p>“In 22 days we were selling. Razorpay + Shiprocket day one — ₹8L first month.”</p><div class="person"><img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop" alt=""><div><strong>Rajesh Agarwal</strong><br><span>SajDhaj, Mumbai • D2C</span></div></div></div>
+      </div>
+      <!-- Card 2 -->
+      <div class="v-card reveal">
+        <div class="drb-video" data-video>
+          <video src="https://cdn.dribbble.com/userupload/46766459/file/42e3e538c8cef7ffd31d6bbb928f7e75.mp4" poster="https://cdn.dribbble.com/userupload/46766459/file/still-70cb78ec2c4a220f7d5706af5b005fa8.png" loop preload="metadata" playsinline muted></video>
+          <div class="drb-controls">
+            <button class="drb-btn play" aria-label="Play"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M18.6795 13.4L7.77348 20.3964C6.42547 21.2626 4.5 20.4384 4.5 18.9964V5.00358C4.5 3.5616 6.42547 2.73736 7.77348 3.6036L18.6795 10.6C18.9311 10.7504 19.1381 10.9575 19.2815 11.2021C19.4248 11.4468 19.5 11.7211 19.5 12C19.5 12.2789 19.4248 12.5532 19.2815 12.7979C19.1381 13.0425 18.9311 13.2496 18.6795 13.4Z" fill="currentColor"/></svg></button>
+            <button class="drb-btn mute" aria-label="Unmute"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M21.414 12L23.707 9.707C23.8892 9.5184 23.99 9.2658 23.9877 9.0036C23.9854 8.7414 23.8802 8.49059 23.6948 8.30518C23.5094 8.11977 23.2586 8.0146 22.9964 8.01233C22.7342 8.01005 22.4816 8.11084 22.293 8.293L20 10.586L17.707 8.293C17.5184 8.11084 17.2658 8.01005 17.0036 8.01233C16.7414 8.0146 16.4906 8.11977 16.3052 8.30518C16.1198 8.49059 16.0146 8.7414 16.0123 9.0036C16.01 9.2658 16.1108 9.5184 16.293 9.707L18.586 12L16.293 14.293C16.1975 14.3852 16.1213 14.4956 16.0689 14.6176C16.0165 14.7396 15.9889 14.8708 15.9877 15.0036C15.9866 15.1364 16.0119 15.2681 16.0622 15.391C16.1125 15.5139 16.1867 15.6255 16.2806 15.7194C16.3745 15.8133 16.4862 15.8875 16.609 15.9378C16.7319 15.9881 16.8636 16.0134 16.9964 16.0123C17.1292 16.0111 17.2604 15.9835 17.3824 15.9311C17.5044 15.8787 17.6148 15.8025 17.707 15.707L20 13.414L22.293 15.707C22.4816 15.8892 22.7342 15.99 22.9964 15.9877C23.2586 15.9854 23.5094 15.8802 23.6948 15.6948C23.8802 15.5094 23.9854 15.2586 23.9877 14.9964C23.99 14.7342 23.8892 14.4816 23.707 14.293L21.414 12ZM3 6C2.20435 6 1.44129 6.31607 0.87868 6.87868C0.31607 7.44129 0 8.20435 0 9L0 15C0 15.7956 0.31607 16.5587 0.87868 17.1213C1.44129 17.6839 2.20435 18 3 18H5.649L12 23V1L5.649 6H3Z" fill="currentColor"/></svg></button>
+            <div class="drb-progress"><div class="drb-progress-fill"></div></div>
+          </div>
+        </div>
+        <div class="v-body"><div class="stars">★★★★★</div><p>“Android-first, offline on ₹8k phones. Hindi onboarding loved by students.”</p><div class="person"><img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&h=100&fit=crop" alt=""><div><strong>Priya Nair</strong><br><span>Padho, Delhi NCR • EdTech</span></div></div></div>
+      </div>
+      <!-- Card 3 -->
+      <div class="v-card reveal">
+        <div class="drb-video" data-video>
+          <video src="https://cdn.dribbble.com/userupload/46766459/file/42e3e538c8cef7ffd31d6bbb928f7e75.mp4" poster="https://cdn.dribbble.com/userupload/46766459/file/still-70cb78ec2c4a220f7d5706af5b005fa8.png" loop preload="metadata" playsinline muted></video>
+          <div class="drb-controls">
+            <button class="drb-btn play" aria-label="Play"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M18.6795 13.4L7.77348 20.3964C6.42547 21.2626 4.5 20.4384 4.5 18.9964V5.00358C4.5 3.5616 6.42547 2.73736 7.77348 3.6036L18.6795 10.6C18.9311 10.7504 19.1381 10.9575 19.2815 11.2021C19.4248 11.4468 19.5 11.7211 19.5 12C19.5 12.2789 19.4248 12.5532 19.2815 12.7979C19.1381 13.0425 18.9311 13.2496 18.6795 13.4Z" fill="currentColor"/></svg></button>
+            <button class="drb-btn mute" aria-label="Unmute"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M21.414 12L23.707 9.707C23.8892 9.5184 23.99 9.2658 23.9877 9.0036C23.9854 8.7414 23.8802 8.49059 23.6948 8.30518C23.5094 8.11977 23.2586 8.0146 22.9964 8.01233C22.7342 8.01005 22.4816 8.11084 22.293 8.293L20 10.586L17.707 8.293C17.5184 8.11084 17.2658 8.01005 17.0036 8.01233C16.7414 8.0146 16.4906 8.11977 16.3052 8.30518C16.1198 8.49059 16.0146 8.7414 16.0123 9.0036C16.01 9.2658 16.1108 9.5184 16.293 9.707L18.586 12L16.293 14.293C16.1975 14.3852 16.1213 14.4956 16.0689 14.6176C16.0165 14.7396 15.9889 14.8708 15.9877 15.0036C15.9866 15.1364 16.0119 15.2681 16.0622 15.391C16.1125 15.5139 16.1867 15.6255 16.2806 15.7194C16.3745 15.8133 16.4862 15.8875 16.609 15.9378C16.7319 15.9881 16.8636 16.0134 16.9964 16.0123C17.1292 16.0111 17.2604 15.9835 17.3824 15.9311C17.5044 15.8787 17.6148 15.8025 17.707 15.707L20 13.414L22.293 15.707C22.4816 15.8892 22.7342 15.99 22.9964 15.9877C23.2586 15.9854 23.5094 15.8802 23.6948 15.6948C23.8802 15.5094 23.9854 15.2586 23.9877 14.9964C23.99 14.7342 23.8892 14.4816 23.707 14.293L21.414 12ZM3 6C2.20435 6 1.44129 6.31607 0.87868 6.87868C0.31607 7.44129 0 8.20435 0 9L0 15C0 15.7956 0.31607 16.5587 0.87868 17.1213C1.44129 17.6839 2.20435 18 3 18H5.649L12 23V1L5.649 6H3Z" fill="currentColor"/></svg></button>
+            <div class="drb-progress"><div class="drb-progress-fill"></div></div>
+          </div>
+        </div>
+        <div class="v-body"><div class="stars">★★★★★</div><p>“Billing 2 days → 2 hours. Tally sync, GST bill — professional.”</p><div class="person"><img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=100&h=100&fit=crop" alt=""><div><strong>Amit Patel</strong><br><span>Vardhman Steel, Ahmedabad</span></div></div></div>
+      </div>
     </div>
   </div>
 </section>
@@ -915,6 +970,46 @@ window.addEventListener('scroll',()=>{
     });
   },{passive:true});
 })();
+// video reviews — drb-video (from referral)
+document.querySelectorAll('.drb-video').forEach(card=>{
+  const video=card.querySelector('video');
+  const playBtn=card.querySelector('.drb-btn.play');
+  const muteBtn=card.querySelector('.drb-btn.mute');
+  const fill=card.querySelector('.drb-progress-fill');
+  if(!video||!playBtn||!muteBtn) return;
+  const updatePlay=()=>{
+    const isPlaying=!video.paused && !video.ended;
+    playBtn.setAttribute('aria-pressed', String(isPlaying));
+    playBtn.setAttribute('aria-label', isPlaying ? 'Pause' : 'Play');
+    playBtn.innerHTML = isPlaying
+      ? '<svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M6 5h4v14H6zM14 5h4v14h-4z" fill="currentColor"/></svg>'
+      : '<svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M18.6795 13.4L7.77348 20.3964C6.42547 21.2626 4.5 20.4384 4.5 18.9964V5.00358C4.5 3.5616 6.42547 2.73736 7.77348 3.6036L18.6795 10.6C18.9311 10.7504 19.1381 10.9575 19.2815 11.2021C19.4248 11.4468 19.5 11.7211 19.5 12C19.5 12.2789 19.4248 12.5532 19.2815 12.7979C19.1381 13.0425 18.9311 13.2496 18.6795 13.4Z" fill="currentColor"/></svg>';
+  };
+  const togglePlay=()=>{ if(video.paused) video.play(); else video.pause(); };
+  card.addEventListener('click', (e)=>{
+    if(e.target.closest('button')) return;
+    togglePlay();
+  });
+  playBtn.addEventListener('click', (e)=>{ e.stopPropagation(); togglePlay(); });
+  muteBtn.addEventListener('click', (e)=>{
+    e.stopPropagation();
+    video.muted=!video.muted;
+    muteBtn.setAttribute('aria-label', video.muted ? 'Unmute' : 'Mute');
+    muteBtn.style.opacity = video.muted ? '0.9' : '1';
+    muteBtn.style.background = video.muted ? 'rgba(255,255,255,.92)' : 'var(--lime)';
+    muteBtn.style.color = video.muted ? '#0F172A' : '#fff';
+  });
+  video.addEventListener('play', updatePlay);
+  video.addEventListener('pause', updatePlay);
+  video.addEventListener('timeupdate', ()=>{
+    if(video.duration){
+      const pct=(video.currentTime/video.duration)*100;
+      fill.style.width=pct+'%';
+    }
+  });
+  video.addEventListener('ended', ()=>{ fill.style.width='0%'; updatePlay(); });
+  updatePlay();
+});
 
 </script>
 </body>
