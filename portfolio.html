@@ -548,6 +548,20 @@ footer{border-top:1px solid #1E293B;margin-top:0}
 @media(max-width:1024px){.video-reviews{grid-template-columns:1fr 1fr}}
 @media(max-width:640px){.video-reviews{grid-template-columns:1fr}}
 
+/* ===== SMOOTH PAGE TRANSITION — nav-pill next page ===== */
+html{scroll-behavior:smooth}
+body{opacity:1;transform:translateY(0);transition:opacity .28s cubic-bezier(.22,1,.36,1), transform .28s cubic-bezier(.22,1,.36,1)}
+body.page-enter{animation:pageEnter .42s cubic-bezier(.22,1,.36,1) both}
+@keyframes pageEnter{0%{opacity:0;transform:translateY(8px)}100%{opacity:1;transform:translateY(0)}}
+body.page-exit{opacity:0;transform:translateY(8px) scale(.985);pointer-events:none}
+body.page-exit .nav-pill{transform:translateY(-2px) scale(.985)}
+@media(prefers-reduced-motion:reduce){
+  body,body.page-enter,body.page-exit{animation:none !important;transition:none !important;transform:none !important;opacity:1 !important}
+}
+.nav-links a{position:relative}
+.nav-links a::after{content:'';position:absolute;left:16px;right:16px;bottom:5px;height:2px;background:var(--lime);border-radius:2px;transform:scaleX(0);transform-origin:left;transition:transform .28s cubic-bezier(.22,1,.36,1)}
+.nav-links a:hover::after{transform:scaleX(1)}
+.nav-links a.active::after{transform:scaleX(1);background:#fff;opacity:.85}
 </style>
 <title>Portfolio — Lenax | Bengaluru IT Studio</title>
 </head>
@@ -751,6 +765,61 @@ window.addEventListener('scroll',()=>{
       tick=false;
     });
   },{passive:true});
+})();
+
+// smooth page transition — intercept nav-pill next page clicks
+(function(){
+  const links = document.querySelectorAll('.nav-pill a[href$=".html"], .f-col a[href$=".html"], .f-bottom a[href$=".html"]');
+  let isExiting=false;
+  function navigate(url){
+    if(isExiting) return;
+    isExiting=true;
+    document.body.classList.add('page-exit');
+    // Use View Transitions API if available for even smoother
+    if(document.startViewTransition){
+      document.startViewTransition(()=>{ window.location.href=url; });
+      setTimeout(()=>{ if(isExiting) window.location.href=url; }, 600);
+    } else {
+      setTimeout(()=>{ window.location.href=url; }, 280);
+    }
+  }
+  links.forEach(a=>{
+    // only same-origin html pages, not external
+    try{
+      const u=new URL(a.href, location.origin);
+      if(u.origin!==location.origin) return;
+      if(!u.pathname.endsWith('.html')) return;
+      if(u.pathname===location.pathname) return; // same page, let scroll handle
+    }catch{ return; }
+    a.addEventListener('click', (e)=>{
+      // allow ctrl/cmd/new tab
+      if(e.metaKey||e.ctrlKey||e.shiftKey||e.button!==0) return;
+      e.preventDefault();
+      // update active state instantly for feedback
+      document.querySelectorAll('.nav-links a').forEach(x=>x.classList.remove('active'));
+      if(a.closest('.nav-links')) a.classList.add('active');
+      navigate(a.href);
+    });
+  });
+  // entry animation
+  document.body.classList.add('page-enter');
+  window.addEventListener('pageshow', ()=>{
+    document.body.classList.remove('page-exit');
+  });
+  // also smooth scroll for same-page anchors if any remain
+  document.querySelectorAll('a[href^="#"]').forEach(a=>{
+    a.addEventListener('click', function(e){
+      const href=this.getAttribute('href');
+      if(href.length>1){
+        const target=document.querySelector(href);
+        if(target){
+          e.preventDefault();
+          target.scrollIntoView({behavior:'smooth', block:'start'});
+          history.pushState(null,'',href);
+        }
+      }
+    });
+  });
 })();
 
 </script>
