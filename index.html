@@ -601,6 +601,41 @@ footer{border-top:1px solid #1E293B;margin-top:0}
   .review-card.text-card.is-visible.floating{animation:none}
   .review-card.text-card .review-stars{animation:none}
 }
+/* ===== UNIQUE REVIEWS — Floating Constellation (no video) ===== */
+.reviews-unique{background:radial-gradient(600px 400px at 18% 8%, rgba(37,99,235,.06), transparent 60%), radial-gradient(700px 500px at 92% 92%, rgba(14,165,233,.05), transparent 60%), linear-gradient(180deg,#FFFFFF 0%, #F8FAFC 100%);border-top:1px solid var(--line);border-bottom:1px solid var(--line);position:relative;overflow:hidden}
+.reviews-unique::before{content:'';position:absolute;inset:0;background:radial-gradient(1px 1px at 22% 34%, rgba(15,23,42,.08) 1px, transparent 0), radial-gradient(1px 1px at 78% 68%, rgba(15,23,42,.06) 1px, transparent 0);background-size:420px 420px;opacity:.5;pointer-events:none}
+.reviews-unique .reviews-head{max-width:640px;margin:0 auto 32px;position:relative}
+.reviews-unique .reviews-head .kicker{display:inline-flex;align-items:center;gap:8px;background:#EFF6FF;border:1px solid #BFDBFE;color:var(--ink);padding:6px 10px;border-radius:999px;font-family:var(--mono);font-size:.68rem;letter-spacing:.08em;text-transform:uppercase;font-weight:700;margin-bottom:12px}
+.reviews-unique .reviews-head h2{font-family:var(--header-font);font-size:2.4rem;font-weight:800;letter-spacing:-.7px;color:var(--ink);line-height:1.1}
+.reviews-unique .reviews-head p{font-family:'Inter',sans-serif;color:#475569;font-size:1rem;line-height:1.6;margin-top:10px}
+.unique-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;position:relative}
+.u-card{position:relative;background:var(--card);border:1px solid var(--line);border-radius:20px;padding:20px;box-shadow:0 1px 2px rgba(15,23,42,.06), 0 8px 16px rgba(15,23,42,.04);overflow:hidden;transform:rotate(var(--rot)) translateY(18px);opacity:0;transition:transform .62s cubic-bezier(.22,1,.36,1), opacity .52s ease, box-shadow .32s ease, border-color .32s ease;will-change:transform,opacity}
+.u-card.is-visible{opacity:1;transform:rotate(var(--rot)) translateY(0)}
+.u-card.is-visible.floating{animation:floatUnique var(--float) ease-in-out infinite; animation-delay:var(--delay)}
+@keyframes floatUnique{0%,100%{transform:rotate(var(--rot)) translateY(0)}50%{transform:rotate(var(--rot)) translateY(-4px)}}
+.u-card::before{content:'';position:absolute;inset:0;border-radius:20px;pointer-events:none;box-shadow:inset 0 1px 0 rgba(255,255,255,.6)}
+.u-card:hover{transform:rotate(0deg) translateY(-6px) scale(1.015) !important;box-shadow:0 12px 28px rgba(15,23,42,.12);border-color:#CBD5E1;z-index:2}
+.u-card:hover .u-avatar{transform:scale(1.08)}
+.unique-grid:has(.u-card:hover) .u-card:not(:hover){opacity:.72;transform:rotate(var(--rot)) scale(.97)}
+.u-quote{font-family:var(--serif);font-size:3.2rem;line-height:.6;color:#E2E8F0;user-select:none;margin-bottom:4px;transition:color .32s, transform .32s}
+.u-card:hover .u-quote{color:#CBD5E1;transform:translateY(-2px)}
+.u-stars{color:#F59E0B;font-size:.82rem;letter-spacing:2px;line-height:1;transition:transform .32s, opacity .32s}
+.u-card.is-visible .u-stars{animation:starPop .48s cubic-bezier(.22,1,.36,1) both}
+.u-card:nth-child(1) .u-stars{animation-delay:.18s} .u-card:nth-child(2) .u-stars{animation-delay:.26s} .u-card:nth-child(3) .u-stars{animation-delay:.34s}
+.u-card:nth-child(4) .u-stars{animation-delay:.14s} .u-card:nth-child(5) .u-stars{animation-delay:.22s} .u-card:nth-child(6) .u-stars{animation-delay:.30s}
+@keyframes starPop{0%{opacity:0;transform:scale(.88)}100%{opacity:1;transform:scale(1)}}
+.u-text{font-family:var(--serif);font-size:1rem;line-height:1.6;color:#0F172A;margin:10px 0 16px;transition:opacity .3s}
+.u-person{display:flex;align-items:center;gap:12px;border-top:1px solid var(--line);padding-top:14px}
+.u-avatar{width:48px;height:48px;min-width:48px;border-radius:50%;object-fit:cover;border:1.5px solid var(--line);box-shadow:0 1px 4px rgba(15,23,42,.08);transition:transform .32s cubic-bezier(.22,1,.36,1)}
+.u-name{font-family:var(--header-font);font-weight:700;font-size:.92rem;color:var(--ink);line-height:1.2}
+.u-meta{font-family:var(--mono);font-size:.68rem;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-top:2px}
+@media(max-width:1024px){.unique-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:640px){.unique-grid{grid-template-columns:1fr}.reviews-unique .reviews-head h2{font-size:1.9rem}.u-card{transform:rotate(0) translateY(18px)}.u-card.is-visible{transform:rotate(0) translateY(0)}.unique-grid:has(.u-card:hover) .u-card:not(:hover){opacity:1;transform:none}}
+@media(prefers-reduced-motion:reduce){
+  .u-card{opacity:1;transform:none;transition:none}
+  .u-card.is-visible.floating{animation:none}
+  .u-card .u-stars{animation:none}
+}
 </style>
 </head>
 <body>
@@ -825,100 +860,69 @@ footer{border-top:1px solid #1E293B;margin-top:0}
   </div>
 </section>
 
-<!-- PREMIUM TESTIMONIALS — Dribbble 27095486 inspired (layered, animated) -->
-<section class="section testimonials-premium" id="reviews">
+<!-- UNIQUE ANIMATED REVIEWS — Floating Constellation -->
+<section class="section reviews-unique" id="reviews">
   <div class="container">
-    <div class="testimonials-head">
-      <span class="kicker"><span class="kicker-dot" aria-hidden="true"></span> TESTIMONIALS • VERIFIED REVIEWS</span>
+    <div class="reviews-head">
+      <span class="kicker"><span class="kicker-dot" aria-hidden="true"></span> TESTIMONIALS • LOVED BY 120+ BUSINESSES</span>
       <h2>What Our Customers Say</h2>
       <p>Real experiences from our happy customers.</p>
     </div>
-    <div class="testimonials-stage" aria-roledescription="carousel" aria-label="Customer testimonials">
-      <div class="testimonials-track" id="tTrack">
-        <!-- Card 1 — Sarah Johnson -->
-        <article class="t-card" data-index="0" tabindex="0" aria-label="Review by Sarah Johnson">
-          <div class="t-quote" aria-hidden="true">“</div>
-          <div class="t-stars" aria-label="5 out of 5 stars">★★★★★</div>
-          <p class="t-text">“Absolutely loved the experience. The service was excellent and everything was handled perfectly. The team was responsive and truly caring from day one.”</p>
-          <div class="t-person">
-            <img class="t-avatar" src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=200&h=200&fit=crop" alt="Sarah Johnson" loading="lazy" width="48" height="48">
-            <div>
-              <div class="t-name">Sarah Johnson</div>
-              <div class="t-meta">Chennai, India • Mar 2024</div>
-            </div>
-          </div>
-        </article>
-        <!-- Card 2 — Rajesh Agarwal -->
-        <article class="t-card" data-index="1" tabindex="0" aria-label="Review by Rajesh Agarwal">
-          <div class="t-quote" aria-hidden="true">“</div>
-          <div class="t-stars" aria-label="5 out of 5 stars">★★★★★</div>
-          <p class="t-text">“In 22 days we were selling online. Razorpay and Shiprocket were live on day one — ₹8L in the first month without a single follow-up needed.”</p>
-          <div class="t-person">
-            <img class="t-avatar" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&h=200&fit=crop" alt="Rajesh Agarwal" loading="lazy" width="48" height="48">
-            <div>
-              <div class="t-name">Rajesh Agarwal</div>
-              <div class="t-meta">Mumbai, India • Feb 2024</div>
-            </div>
-          </div>
-        </article>
-        <!-- Card 3 — Priya Nair -->
-        <article class="t-card" data-index="2" tabindex="0" aria-label="Review by Priya Nair">
-          <div class="t-quote" aria-hidden="true">“</div>
-          <div class="t-stars" aria-label="5 out of 5 stars">★★★★★</div>
-          <p class="t-text">“Finally an Android-first app that works on ₹8k phones offline. Our students loved the Hindi onboarding — seamless and incredibly fast.”</p>
-          <div class="t-person">
-            <img class="t-avatar" src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=200&h=200&fit=crop" alt="Priya Nair" loading="lazy" width="48" height="48">
-            <div>
-              <div class="t-name">Priya Nair</div>
-              <div class="t-meta">Delhi, India • Jan 2024</div>
-            </div>
-          </div>
-        </article>
-        <!-- Card 4 — Amit Patel -->
-        <article class="t-card" data-index="3" tabindex="0" aria-label="Review by Amit Patel">
-          <div class="t-quote" aria-hidden="true">“</div>
-          <div class="t-stars" aria-label="5 out of 5 stars">★★★★★</div>
-          <p class="t-text">“Billing went from 2 days to 2 hours. Tally sync and GST e-invoicing saved us so much time — truly professional support throughout.”</p>
-          <div class="t-person">
-            <img class="t-avatar" src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=200&h=200&fit=crop" alt="Amit Patel" loading="lazy" width="48" height="48">
-            <div>
-              <div class="t-name">Amit Patel</div>
-              <div class="t-meta">Ahmedabad, India • Dec 2023</div>
-            </div>
-          </div>
-        </article>
-        <!-- Card 5 — Ananya Reddy -->
-        <article class="t-card" data-index="4" tabindex="0" aria-label="Review by Ananya Reddy">
-          <div class="t-quote" aria-hidden="true">“</div>
-          <div class="t-stars" aria-label="5 out of 5 stars">★★★★★</div>
-          <p class="t-text">“Clinic management is now seamless — appointments, billing and EMR in one place. The team understood our workflow perfectly and delivered beyond.”</p>
-          <div class="t-person">
-            <img class="t-avatar" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=200&h=200&fit=crop" alt="Ananya Reddy" loading="lazy" width="48" height="48">
-            <div>
-              <div class="t-name">Ananya Reddy</div>
-              <div class="t-meta">Hyderabad, India • Nov 2023</div>
-            </div>
-          </div>
-        </article>
-        <!-- Card 6 — Vikram Singh -->
-        <article class="t-card" data-index="5" tabindex="0" aria-label="Review by Vikram Singh">
-          <div class="t-quote" aria-hidden="true">“</div>
-          <div class="t-stars" aria-label="5 out of 5 stars">★★★★★</div>
-          <p class="t-text">“MoveFast now handles 2,000 trips daily. Real-time tracking and UPI COD collection saved us hours every single day — game changer.”</p>
-          <div class="t-person">
-            <img class="t-avatar" src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=200&h=200&fit=crop" alt="Vikram Singh" loading="lazy" width="48" height="48">
-            <div>
-              <div class="t-name">Vikram Singh</div>
-              <div class="t-meta">Bengaluru, India • Oct 2023</div>
-            </div>
-          </div>
-        </article>
-      </div>
-      <div class="t-controls">
-        <button class="t-btn prev" aria-label="Previous testimonial"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-        <div class="t-dots" role="tablist" aria-label="Testimonial pages"></div>
-        <button class="t-btn next" aria-label="Next testimonial"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-      </div>
+    <div class="unique-grid" id="uniqueGrid">
+      <article class="u-card" data-index="0" tabindex="0" aria-label="Review by Sarah Johnson" style="--rot:-1deg; --delay:0s; --float:5.2s">
+        <div class="u-quote" aria-hidden="true">“</div>
+        <div class="u-stars" aria-label="5 out of 5 stars">★★★★★</div>
+        <p class="u-text">“Absolutely loved the experience. The service was excellent and everything was handled perfectly.”</p>
+        <div class="u-person">
+          <img class="u-avatar" src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=200&h=200&fit=crop" alt="Sarah Johnson" loading="lazy">
+          <div><div class="u-name">Sarah Johnson</div><div class="u-meta">Chennai, India • Mar 2024</div></div>
+        </div>
+      </article>
+      <article class="u-card" data-index="1" tabindex="0" aria-label="Review by Rajesh Agarwal" style="--rot:1.2deg; --delay:.12s; --float:5.8s">
+        <div class="u-quote" aria-hidden="true">“</div>
+        <div class="u-stars" aria-label="5 out of 5 stars">★★★★★</div>
+        <p class="u-text">“In 22 days we were selling online. Razorpay and Shiprocket were live on day one — ₹8L in the first month.”</p>
+        <div class="u-person">
+          <img class="u-avatar" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&h=200&fit=crop" alt="Rajesh Agarwal" loading="lazy">
+          <div><div class="u-name">Rajesh Agarwal</div><div class="u-meta">Mumbai, India • Feb 2024</div></div>
+        </div>
+      </article>
+      <article class="u-card" data-index="2" tabindex="0" aria-label="Review by Priya Nair" style="--rot:-0.6deg; --delay:.24s; --float:6.1s">
+        <div class="u-quote" aria-hidden="true">“</div>
+        <div class="u-stars" aria-label="5 out of 5 stars">★★★★★</div>
+        <p class="u-text">“Finally Android-first that works on ₹8k phones offline. Our students loved the Hindi onboarding.”</p>
+        <div class="u-person">
+          <img class="u-avatar" src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=200&h=200&fit=crop" alt="Priya Nair" loading="lazy">
+          <div><div class="u-name">Priya Nair</div><div class="u-meta">Delhi, India • Jan 2024</div></div>
+        </div>
+      </article>
+      <article class="u-card" data-index="3" tabindex="0" aria-label="Review by Amit Patel" style="--rot:0.8deg; --delay:.08s; --float:5.5s">
+        <div class="u-quote" aria-hidden="true">“</div>
+        <div class="u-stars" aria-label="5 out of 5 stars">★★★★★</div>
+        <p class="u-text">“Billing went from 2 days to 2 hours. Tally sync and GST e-invoicing saved us so much time.”</p>
+        <div class="u-person">
+          <img class="u-avatar" src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=200&h=200&fit=crop" alt="Amit Patel" loading="lazy">
+          <div><div class="u-name">Amit Patel</div><div class="u-meta">Ahmedabad, India • Dec 2023</div></div>
+        </div>
+      </article>
+      <article class="u-card" data-index="4" tabindex="0" aria-label="Review by Ananya Reddy" style="--rot:-1.4deg; --delay:.2s; --float:6.4s">
+        <div class="u-quote" aria-hidden="true">“</div>
+        <div class="u-stars" aria-label="5 out of 5 stars">★★★★★</div>
+        <p class="u-text">“Clinic management is now seamless — appointments, billing and EMR in one place. Excellent support.”</p>
+        <div class="u-person">
+          <img class="u-avatar" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=200&h=200&fit=crop" alt="Ananya Reddy" loading="lazy">
+          <div><div class="u-name">Ananya Reddy</div><div class="u-meta">Hyderabad, India • Nov 2023</div></div>
+        </div>
+      </article>
+      <article class="u-card" data-index="5" tabindex="0" aria-label="Review by Vikram Singh" style="--rot:0.5deg; --delay:.32s; --float:5.9s">
+        <div class="u-quote" aria-hidden="true">“</div>
+        <div class="u-stars" aria-label="5 out of 5 stars">★★★★★</div>
+        <p class="u-text">“MoveFast now handles 2,000 trips daily. Real-time tracking and UPI COD saved us hours every day.”</p>
+        <div class="u-person">
+          <img class="u-avatar" src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=200&h=200&fit=crop" alt="Vikram Singh" loading="lazy">
+          <div><div class="u-name">Vikram Singh</div><div class="u-meta">Bengaluru, India • Oct 2023</div></div>
+        </div>
+      </article>
     </div>
   </div>
 </section>
@@ -1341,6 +1345,43 @@ document.querySelectorAll('.review-video').forEach(card=>{
     });
   },{threshold:.18});
   io.observe(document.querySelector('.testimonials-premium'));
+})();
+
+// unique reviews — floating constellation, spotlight, entrance once
+(function(){
+  const grid=document.querySelector('.unique-grid');
+  const cards=[...document.querySelectorAll('.u-card')];
+  if(!grid||!cards.length) return;
+  const io=new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){
+        cards.forEach((c,i)=>{
+          setTimeout(()=>{
+            c.classList.add('is-visible');
+            setTimeout(()=>c.classList.add('floating'), 480 + i*90);
+          }, i*110);
+        });
+        io.unobserve(e.target);
+      }
+    });
+  },{threshold:.14});
+  io.observe(grid);
+  // reduced motion fallback
+  if(window.matchMedia('(prefers-reduced-motion: reduce)').matches){
+    cards.forEach(c=>{ c.classList.add('is-visible'); c.style.opacity='1'; c.style.transform='none'; });
+    return;
+  }
+  // ensure visible after 1.2s even if IO missed
+  setTimeout(()=>{
+    if(!cards[0].classList.contains('is-visible')){
+      cards.forEach(c=>c.classList.add('is-visible'));
+    }
+  }, 1300);
+  // keyboard: focus highlights like hover (via CSS :has, but add class for older browsers)
+  cards.forEach(c=>{
+    c.addEventListener('focus',()=>grid.classList.add('has-focus'));
+    c.addEventListener('blur',()=>grid.classList.remove('has-focus'));
+  });
 })();
 
 </script>
